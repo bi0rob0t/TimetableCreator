@@ -4,13 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimetableGenerator.Views"
-        
+       xmlns:vm="clr-namespace:TimetableGenerator.ViewModels"
         mc:Ignorable="d"
         Title="DatabaseConfigureWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:DatabaseConfigureWindowVM/>
+    </Window.DataContext>
     <Grid>
-        <ListBox>
-            <ListBoxItem>sdfsf</ListBoxItem>
-            <ListBoxItem>asdasd</ListBoxItem>
-        </ListBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="361*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row ="0" Orientation="Horizontal">
+            <Button Content="Показать всю базу" Margin="5" Command="{Binding ViewAll}" />
+            <Button Content="Очистить" Margin="5" Command="{Binding Clear}"/>
+        </StackPanel>
+
+        <!--<ListBox Grid.Row ="1" ItemsSource="{Binding Hours, UpdateSourceTrigger=PropertyChanged}">
+
+        </ListBox>-->
+        <DataGrid Grid.Row="1" x:Name="phonesGrid" AutoGenerateColumns="True" ItemsSource="{Binding Hours}">
+
+        </DataGrid>
     </Grid>
 </Window>
